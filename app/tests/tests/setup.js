@@ -16,3 +16,7 @@ var resolver = AppResolver.create({
 });
 
 setResolver(resolver);
+
+window.testUtils = {
+  authKey: '738671a13fe3a67ffbe6fd904177608ea037aaafb81b4e0debfd49f55069f6c5:'
+};

@@ -8,7 +8,7 @@ moduleForModel('test', 'model: test', {
   setup: function(container) {
     container.register('serializer:-app', Serializer);
     container.register('adapter:application', Adapter.extend({
-      auth: '738671a13fe3a67ffbe6fd904177608ea037aaafb81b4e0debfd49f55069f6c5:'
+      auth: testUtils.authKey
     }));
   },
   teardown: function() {
