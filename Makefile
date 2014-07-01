@@ -3,6 +3,7 @@ app:
 	
 	rm -rf dist tmp
 	RUNNING_TESTS=false \
+	RUNNING_VIEWS=false \
 	PORT=9000 \
 		node submodules/li-core/build/server/server.js
 
@@ -17,7 +18,7 @@ views:
 tests:
 	
 	rm -rf dist tmp
-	RUNNING_TESTS=false \
+	RUNNING_TESTS=true \
 	RUNNING_VIEWS=false \
 	PORT=9000 \
 		node submodules/li-core/build/server/server.js

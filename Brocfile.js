@@ -22,7 +22,6 @@ var runningApp = (!runningTests && !runningViews);
 
 //console.log('Views: ' +runningViews + 'Tests: ' + runningTests);
 
-var testType = process.env.TEST_TYPE;
 
 
 // --- create HandlebarsPrecompiler
@@ -172,7 +171,7 @@ if ( runningApp ) {
 
   trees.push(testsUtils);
 
-  var emberTests = match('app', 'tests/tests/'+testType+'/**/*_test.js');
+  var emberTests = match('app', 'tests/tests/unit/**/*_test.js');
   emberTests = concatFilter(emberTests, {inputFiles: ['**/*.js'], outputFile:'/tests.js'});
 
 }
@@ -221,6 +220,11 @@ if ( runningApp ) {
 
 } else if ( runningTests ) {
 
+  var index = pickFiles('app/tests', {
+    srcDir: '/',
+    files: ['index.html'],
+    destDir: '/' });
+
   var publicFiles = pickFiles('app', {
     srcDir: '/tests/public',
     files: ['*'],
@@ -229,12 +233,12 @@ if ( runningApp ) {
 
   var setup = pickFiles('app', {
     srcDir: '/tests/tests',
-    files: [testType+'_setup.js'],
+    files: ['setup.js'],
     destDir: '/' });;
 
   setup = concatFilter(setup, {inputFiles: ['**/*.js'],outputFile:'/setup.js'});
 
-  trees = [publicFiles, trees, styles, emberTests, setup];
+  trees = [index, publicFiles, trees, styles, emberTests, setup];
 
   var confTests = pickFiles('submodules/data/tests', {
     srcDir: '/',
