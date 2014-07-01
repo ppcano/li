@@ -5,6 +5,9 @@ import 'ember-data/lib/main';
 import App from 'app/system/application';
 
 
+App.initializeModule('views/initializers/application/load_fixtures');
+App.initializeModule('views/initializers/application/store');
+
 Ember.ENV.LOG_MODULE_RESOLVER = true;
 window.App = App.create({
 

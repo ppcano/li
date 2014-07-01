@@ -1,18 +1,19 @@
 
 
 App.IndexController = Em.Controller.extend({
-  text: 'hola hola!!!'
 });
 
 
 App.IndexRoute = Ember.Route.extend({
 
   model: function() {
-
+    return this.store.find('test');
   },
+
   afterModel: function(model) {
 
   }
+
 });
 
 
