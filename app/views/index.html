@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Views</title>
+  <script src="./source/app.js"></script>
+  <link rel="stylesheet" type="text/css" media="all" href="source/app.css">
+</head>
+<body>
+    <script type="text/javascript">
+        require('views'); 
+
+        var screens = location.search.match(/view=([^&]+)/),
+            screen;
+
+        if ( screens ) {
+            screen = screens[1];
+            require('views/'+screen); 
+        }
+    </script>
+</body>
+</html>
+

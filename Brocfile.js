@@ -16,12 +16,13 @@ var mergeTrees = require('broccoli-merge-trees'),
 
 
 // --- read command parameters
-var runningTests = process.env.RUNNING_TEST === 'true';
-var testType = process.env.TEST_TYPE;
+var runningTests = process.env.RUNNING_TESTS === 'true';
+var runningViews = process.env.RUNNING_VIEWS === 'true';
+var runningApp = (!runningTests && !runningViews);
 
-var runningApp = true;
-var runningViews = false;
-runningTests = false;
+//console.log('Views: ' +runningViews + 'Tests: ' + runningTests);
+
+var testType = process.env.TEST_TYPE;
 
 
 // --- create HandlebarsPrecompiler
@@ -129,6 +130,18 @@ if ( runningApp ) {
 
   trees.push(app);
 
+} else if ( runningViews ) {
+
+  var views = match('app/views', '**/*.js');
+  views = es6Filter(views, { moduleName: function(filePath) {
+                    return filePath.replace('app/views', 'views')
+                                   .replace('lib/','')
+                                   .replace(/.js$/, '')
+                                   .replace(/\/main$/, '');
+  }});
+
+  trees.push(views);
+
 } else if ( runningTests ) {
 
   var emberQunit = match('submodules/ember-qunit/lib', '**/*.js');
@@ -156,11 +169,9 @@ if ( runningApp ) {
   var emberTests = match('app', 'tests/tests/'+testType+'/**/*_test.js');
   emberTests = concatFilter(emberTests, {inputFiles: ['**/*.js'], outputFile:'/tests.js'});
 
-
-} else if ( runningViews ) {
-
 }
 
+//--- compact files + iife + add loader + create app.js
 trees = mergeTrees(trees)
 trees = concatFilter(trees, {inputFiles: ['**/*.js'],outputFile:'/tmp.js'});
 trees = iife(trees);
@@ -180,10 +191,29 @@ styles = concatFilter(styles, {inputFiles: ['**/*.css'],outputFile:'/app.css'});
 styles = pickFiles(styles, {
   srcDir: '/',
   files: ['app.css'],
-  destDir: '/source/' });
+  destDir: '/source/' 
+});
 
 
-if ( runningTests ) {
+if ( runningApp ) {
+
+  var index = pickFiles('app/app', {
+    srcDir: '/',
+    files: ['index.html'],
+    destDir: '/' });
+
+  trees = [index, trees, styles];
+
+} else if ( runningViews ) {
+
+  var index = pickFiles('app/views', {
+    srcDir: '/',
+    files: ['index.html'],
+    destDir: '/' });
+
+  trees = [index, trees, styles];
+
+} else if ( runningTests ) {
 
   var publicFiles = pickFiles('app', {
     srcDir: '/tests/public',
@@ -207,15 +237,6 @@ if ( runningTests ) {
 
   trees.push(confTests);
 
-} else {
-
-  var index = pickFiles('submodules/li-core/build/server', {
-    srcDir: '/',
-    files: ['index.html'],
-    destDir: '/' });
-
-  trees = [index, trees, styles];
-  
 }
 
 module.exports = mergeTrees(trees);
