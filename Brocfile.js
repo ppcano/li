@@ -57,9 +57,15 @@ var emberVendoredPackages = match('submodules/ember.js/packages', '{backburner,m
 var vendoredPackages = match('submodules/li-core/build/vendor/packages', '*.js');
 var templates = match('submodules/li-core/templates', '**/*.handlebars');
 var emberMain = match('submodules/li-core/build/shims', 'ember.js');
+var appPackages = match('submodules/li-core/lib', '**/*.js');
 
 
-
+// --appPacakges
+appPackages = es6Filter(appPackages, { moduleName: function(filePath) {
+  return filePath.replace('submodules/li-core/lib','app')
+                 .replace(/.js$/, '')
+                 .replace(/\/main$/, '');
+}});
 
 // --- templates
 templates = templateCompiler(templates, {module: true});
@@ -114,7 +120,7 @@ emberData = es6Filter(emberData, { moduleName: function(filePath) {
 
 
 // compose and build app.js
-var trees = [emberData, emberResolver, emberVendoredPackages, emberMain, emberModules, handlebarsRuntime, vendoredPackages, templates];
+var trees = [emberData, emberResolver, emberVendoredPackages, emberMain, emberModules, handlebarsRuntime, vendoredPackages, templates, appPackages];
 
 
 
