@@ -1,0 +1,15 @@
+[submodule "submodules/li-core"]
+	path = submodules/li-core
+	url = git@github.com:ppcano/li-core.git
+[submodule "submodules/ember.js"]
+	path = submodules/ember.js
+	url = git@github.com:ppcano/ember.js.git
+[submodule "submodules/data"]
+	path = submodules/data
+	url = git@github.com:ppcano/data.git
+[submodule "submodules/ember-qunit"]
+	path = submodules/ember-qunit
+	url = git@github.com:ppcano/ember-qunit.git
+[submodule "submodules/ember-jj-abrams-resolver"]
+	path = submodules/ember-jj-abrams-resolver
+	url = git@github.com:ppcano/ember-jj-abrams-resolver.git
