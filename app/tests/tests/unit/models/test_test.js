@@ -7,14 +7,16 @@ moduleForModel('test', 'model: test', {
 
   setup: function(container) {
     container.register('serializer:-app', Serializer);
-    container.register('adapter:application', Adapter);
+    container.register('adapter:application', Adapter.extend({
+      auth: '738671a13fe3a67ffbe6fd904177608ea037aaafb81b4e0debfd49f55069f6c5:'
+    }));
   },
   teardown: function() {
+    $.mockjaxClear();
   }
 });
 
-
-test('can deserialize a `test` list response', function() {
+test('can deserialize a mock `test` list response', function() {
 
   expect(9);
 
@@ -50,6 +52,22 @@ test('can deserialize a `test` list response', function() {
       equal(test.get('statusText'), 'Finished');
 
     });
+    start();
+  });
+});
+
+
+test('can deserialize a real `test` list response', function() {
+
+  expect(1);
+
+  var store = this.store();
+
+  stop();
+  store.find('test').then(function(tests) {
+    
+    ok(tests.get('length') > 0 , 'has real tests');
+
     start();
   });
 });
