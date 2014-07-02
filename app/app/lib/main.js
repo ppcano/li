@@ -7,7 +7,7 @@ import Router from 'app/system/router';
 App.initializeAll();
 
 
-Ember.ENV.LOG_MODULE_RESOLVER = true;
+Ember.ENV.LOG_MODULE_RESOLVER = false;
 window.App = App.create({
 
   LOG_ACTIVE_GENERATION: false,

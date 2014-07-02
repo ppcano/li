@@ -1,10 +1,5 @@
-
-
-
-
-
 export default {
-  name: 'app-store',
+  name: 'setup-store',
 
   initialize: function(container, application) {
     

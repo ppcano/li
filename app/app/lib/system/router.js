@@ -6,9 +6,10 @@ var AppRouter = Router.extend({
   location: 'history'
 });
 
-// application and index for free
 AppRouter.map(function() {
-  this.route('index', { path: '/' });
+  this.resource('test', { path: '/' }, function() {
+    this.route('result', { path: ':id' });
+  });
 });
 
 export default AppRouter;

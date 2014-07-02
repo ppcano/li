@@ -4,7 +4,7 @@ import App from 'app/system/application';
 
 
 App.initializeModule('views/initializers/application/load_fixtures');
-App.initializeModule('views/initializers/application/store');
+App.initializeModule('views/initializers/application/setup_store');
 
 Ember.ENV.LOG_MODULE_RESOLVER = false;
 window.App = App.create({
