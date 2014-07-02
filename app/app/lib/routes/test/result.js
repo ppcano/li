@@ -2,7 +2,7 @@
 var Route = Em.Route.extend({
 
   model: function(params) {
-    return this.store.find('test', params.id);
+    return this.store.findResults(params.id);
   }
 
 });

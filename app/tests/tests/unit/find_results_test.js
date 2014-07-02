@@ -16,10 +16,11 @@ module('Find Results', {
 
       //container.register('model:test', require('app/models/test')['default']);
       container.register('model:test', resolver.resolve('model:test'));
-
-      container.register('store:main', Store);
+      
+      
+      container.register('store:main', Store); // any name [ember-data initializers are a bit messy]
       container.register('serializer:-app', Serializer);
-      container.register('adapter:application', Adapter.extend({
+      container.register('adapter:-app', Adapter.extend({
         auth: testUtils.authKey
       }));
 
