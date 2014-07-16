@@ -74,7 +74,7 @@ templates = es6Filter(templates, {moduleName: function(filePath) {
 }});
 
 // emberModules
-var emberModules = ['container','ember-application','ember-handlebars-compiler','ember-handlebars','ember-metal','ember-routing','ember-runtime','ember-views'];
+var emberModules = ['container','ember-application','ember-handlebars-compiler','ember-handlebars','ember-metal','ember-routing-handlebars','ember-routing','ember-runtime','ember-views'];
 emberModules.push('ember-extension-support');
 emberModules.push('ember-debug');
 if (runningTests) emberModules.push('ember-testing');
