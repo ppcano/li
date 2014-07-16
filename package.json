@@ -12,7 +12,6 @@
     "mime": "^1.2.11",
     "defeatureify": "^0.2.0",
     "quick-temp": "^0.1.0",
-    "walk-sync": "^0.1.2",
     "promise-map-series": "^0.2.0",
     "rsvp": "~3.0.6",
     "es6-module-transpiler": "~0.4.0",
@@ -20,9 +19,11 @@
     "broccoli-filter": "^0.1.6",
     "extend": "~1.2.1",
     "resolve": "~0.6.2",
+    "walk-sync": "git://github.com/joliss/node-walk-sync.git#a0780836a0a72c6697f38def109152740337e7fc",
     "broccoli": "git://github.com/ppcano/broccoli.git#read-when-changed-deps",
-    "broccoli-concat": "git://github.com/ppcano/broccoli-concat.git#should-not-stat-dir",
-    "broccoli-static-compiler": "git://github.com/ppcano/broccoli-static-compiler.git#is-unchanged",
+    "broccoli-static-compiler": "git://github.com/ppcano/broccoli-static-compiler.git#is-unchanged-with-symlink",
+    "broccoli-merge-trees": "git://github.com/broccolijs/broccoli-merge-trees.git#master",
+    "broccoli-concat": "git://github.com/ppcano/broccoli-concat.git#concat-symlink",
     "broccoli-defeatureify": "~0.3.0",
     "broccoli-file-remover": "~0.2.0",
     "broccoli-caching-writer": "~0.3.0",
@@ -31,7 +32,6 @@
     "broccoli-kitchen-sink-helpers": "^0.2.0",
     "broccoli-es6-module-transpiler": "^0.1.0",
     "broccoli-ember-hbs-template-compiler": "^1.5.0",
-    "broccoli-merge-trees": "^0.1.3",
     "broccoli-replace": "^0.1.6"
   }
 }
